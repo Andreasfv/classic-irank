@@ -112,3 +112,9 @@ export const classSpecs = {
         Protection: "Protection"
     }
 }
+
+export interface WarcraftLogsdata {
+    page: number;
+    hasMorePages: boolean;
+    count: number;
+}

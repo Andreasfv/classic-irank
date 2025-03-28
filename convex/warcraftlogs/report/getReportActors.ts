@@ -1,19 +1,30 @@
 import { v } from "convex/values";
+import { internal } from "../../_generated/api";
 import { action } from "../../_generated/server";
 import { getWarcraftLogsAccessToken } from "../auth/getAccessToken";
+import { ReportData } from "../types";
 
 interface GetReportActorsInput {
     reportCode: string
     fightID: number
+    accessToken?: string
 }
-export async function getReportActors({reportCode, fightID}: GetReportActorsInput)  {
-    const accessToken = (await getWarcraftLogsAccessToken()).accessToken;
+
+interface GetReportActorsOutput {
+        data: {
+            reportData: ReportData
+        }
+}
+
+export async function getActorsReport({reportCode, fightID, accessToken}: GetReportActorsInput)  {
+    const token = accessToken ?? (await getWarcraftLogsAccessToken()).accessToken;
 
     const query = {
         query: 
             `query ReportData {
                 reportData {
                     report(code: "${reportCode}") {
+                        code
                         title
                         startTime
                         zone {
@@ -27,6 +38,7 @@ export async function getReportActors({reportCode, fightID}: GetReportActorsInpu
                             actors(type: "player") {
                                 id
                                 name
+                                type
                                 subType
                                 icon
                             }
@@ -36,6 +48,10 @@ export async function getReportActors({reportCode, fightID}: GetReportActorsInpu
                             encounterID
                             startTime
                             endTime
+                            phaseTransitions {
+                                id
+                                startTime
+                            }
                         }
                     }
                 }
@@ -47,7 +63,7 @@ export async function getReportActors({reportCode, fightID}: GetReportActorsInpu
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(query)
     })
@@ -57,25 +73,29 @@ export async function getReportActors({reportCode, fightID}: GetReportActorsInpu
         throw new Error("Failed to get report")
     }
 
-    const body = await response.json();
-    console.log(body?.data?.reportData?.report?.masterData?.actors)
+    const body: GetReportActorsOutput = await response.json();
 
     if(!body?.data) {
         console.log("No data found")
         console.log(body)
         throw new Error(`No report found for report code: ${reportCode}`)
     }
-    return body.data
+    return body.data.reportData
 }
 
 
-const GetReportActorsInputValidation = v.object({
+const GetActorsReportInputValidation = v.object({
     reportCode: v.string(),
     fightID: v.number()
 })
 
 
-export const getSpecRankingForEncounterAction = action({
-    args: GetReportActorsInputValidation,
-    handler: async (_, args) => {await getReportActors(args)}
+export const getActorsReportAction = action({
+    args: GetActorsReportInputValidation,
+    handler: async (ctx, args) => {
+        // @ts-ignore
+        const token = await ctx.runAction(internal.warcraftlogs.auth.getAccessToken.getWarcraftLogsTokenAction) 
+        const actorData = await getActorsReport({...args, accessToken: token})
+        return actorData.report
+    }
 })

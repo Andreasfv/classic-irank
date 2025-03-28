@@ -1,5 +1,9 @@
 import { ClassSpecs } from "../types/consts"
 
+
+export function safeNameField(name: string) {
+    return name.replaceAll("'", "").replaceAll(" ", "")
+}
 export const universalNotableCasts = [
         //Racials
         {
@@ -41,6 +45,37 @@ type NotableAbilityCasts =  {
             id: number
         }[]
     }
+}
+
+export function getAbilityNameFromID(id: string) {
+    return NotableIDToName[id] ?? "Unknown"
+}
+interface NotableIDToName {
+    [key: string]: string
+}
+export const NotableIDToName: NotableIDToName = {
+    //DK
+    "49028": "Dancing Rune Weapon",
+    "55233": "Vampiric Blood",
+    "48792": "Icebound Fortitude",
+    "42650": "Army of the Dead",
+    "51271": "Pillar of Frost",
+    "47568": "Empower Rune Weapon",
+    "63560": "Dark Transformation",
+    "49016": "Unholy Frenzy",
+    "49206": "Summon Gargoyle",
+    //Trinkets
+    "107949": "Rotting Skull",
+    //racials
+    "26297": "Berserking",
+    "20572": "Blood Fury",
+    //Engineering
+    "82174": "Synapse Springs",
+    //Pots
+    "79634": "Golem's Blood",
+    "79476": "Volcanic Potion",
+    "79633": "Tol'vir Agility"
+
 }
 
 export const classesNotableAbilityCasts: NotableAbilityCasts = {

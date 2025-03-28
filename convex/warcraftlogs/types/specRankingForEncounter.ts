@@ -1,8 +1,9 @@
 import { ClassName, Spec } from "./consts";
 import { Guild } from "./guild";
-import { Report } from "./report";
+import { Server } from "./server";
 
-export interface SpecRanking {
+
+export interface SpecRankingForEncounter {
     name: string;
     class: ClassName;
     spec: Spec;
@@ -10,8 +11,13 @@ export interface SpecRanking {
     hardModeLevel: number;
     duration: number;
     startTime: number;
-    report: Pick<Report, "code" | "fightID" | "startTime">;
+    report: { // The attributes vary from the overall report type
+        code: string;
+        fightID: number;
+        startTime: number;
+    },
     guild: Pick<Guild, "id" | "name" | "faction">;
+    server: Pick<Server, "id" | "name" | "region">
     bracketData: number
     faction: number
     size: number

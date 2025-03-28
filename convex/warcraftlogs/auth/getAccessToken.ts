@@ -43,7 +43,6 @@ export const getWarcraftLogsTokenQuery = internalQuery({
 export const getWarcraftLogsTokenAction = internalAction({
     args: {},
     handler: async (ctx): Promise<string> =>  {
-        console.log("ACCESS TOKEN SHIT")        
         // @ts-ignore "internal" is being difficult.
         const token = await ctx.runQuery(internal.warcraftlogs.auth.getAccessToken.getWarcraftLogsTokenQuery)
         //If no token exists, create a new one.
