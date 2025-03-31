@@ -2,8 +2,8 @@ import { defineSchema } from "convex/server";
 import { authTables } from "@convex-dev/auth/server";
 import tasks from "./schema/tasks/tasks";
 import accessTokens from "./schema/auth/accessTokens";
-import rankings from "./schema/rankings/rankings";
- 
+import rankings from "./schema/warcraftLogs/rankings";
+
 const schema = defineSchema({
   ...authTables,
   tasks: tasks,
@@ -11,5 +11,5 @@ const schema = defineSchema({
   rankings: rankings,
   // Your other tables...
 });
- 
+
 export default schema;

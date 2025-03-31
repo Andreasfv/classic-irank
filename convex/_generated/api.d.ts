@@ -18,8 +18,10 @@ import type * as auth_replaceAccessToken from "../auth/replaceAccessToken.js";
 import type * as auth from "../auth.js";
 import type * as http from "../http.js";
 import type * as schema_auth_accessTokens from "../schema/auth/accessTokens.js";
-import type * as schema_rankings_rankings from "../schema/rankings/rankings.js";
 import type * as schema_tasks_tasks from "../schema/tasks/tasks.js";
+import type * as schema_warcraftLogs_encounter from "../schema/warcraftLogs/encounter.js";
+import type * as schema_warcraftLogs_rankings from "../schema/warcraftLogs/rankings.js";
+import type * as schema_warcraftLogs_zone from "../schema/warcraftLogs/zone.js";
 import type * as task_createTask from "../task/createTask.js";
 import type * as task_getTasks from "../task/getTasks.js";
 import type * as warcraftlogs_auth_getAccessToken from "../warcraftlogs/auth/getAccessToken.js";
@@ -33,6 +35,7 @@ import type * as warcraftlogs_specRanking_generateRankingDataForSpec from "../wa
 import type * as warcraftlogs_specRanking_getSpecRankingForEncounter from "../warcraftlogs/specRanking/getSpecRankingForEncounter.js";
 import type * as warcraftlogs_types_actor from "../warcraftlogs/types/actor.js";
 import type * as warcraftlogs_types_consts from "../warcraftlogs/types/consts.js";
+import type * as warcraftlogs_types_encounter from "../warcraftlogs/types/encounter.js";
 import type * as warcraftlogs_types_fight from "../warcraftlogs/types/fight.js";
 import type * as warcraftlogs_types_guild from "../warcraftlogs/types/guild.js";
 import type * as warcraftlogs_types_index from "../warcraftlogs/types/index.js";
@@ -41,6 +44,8 @@ import type * as warcraftlogs_types_report from "../warcraftlogs/types/report.js
 import type * as warcraftlogs_types_server from "../warcraftlogs/types/server.js";
 import type * as warcraftlogs_types_specRankingForEncounter from "../warcraftlogs/types/specRankingForEncounter.js";
 import type * as warcraftlogs_types_zone from "../warcraftlogs/types/zone.js";
+import type * as warcraftlogs_zones_consts from "../warcraftlogs/zones/consts.js";
+import type * as warcraftlogs_zones_getZones from "../warcraftlogs/zones/getZones.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -56,8 +61,10 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   http: typeof http;
   "schema/auth/accessTokens": typeof schema_auth_accessTokens;
-  "schema/rankings/rankings": typeof schema_rankings_rankings;
   "schema/tasks/tasks": typeof schema_tasks_tasks;
+  "schema/warcraftLogs/encounter": typeof schema_warcraftLogs_encounter;
+  "schema/warcraftLogs/rankings": typeof schema_warcraftLogs_rankings;
+  "schema/warcraftLogs/zone": typeof schema_warcraftLogs_zone;
   "task/createTask": typeof task_createTask;
   "task/getTasks": typeof task_getTasks;
   "warcraftlogs/auth/getAccessToken": typeof warcraftlogs_auth_getAccessToken;
@@ -71,6 +78,7 @@ declare const fullApi: ApiFromModules<{
   "warcraftlogs/specRanking/getSpecRankingForEncounter": typeof warcraftlogs_specRanking_getSpecRankingForEncounter;
   "warcraftlogs/types/actor": typeof warcraftlogs_types_actor;
   "warcraftlogs/types/consts": typeof warcraftlogs_types_consts;
+  "warcraftlogs/types/encounter": typeof warcraftlogs_types_encounter;
   "warcraftlogs/types/fight": typeof warcraftlogs_types_fight;
   "warcraftlogs/types/guild": typeof warcraftlogs_types_guild;
   "warcraftlogs/types/index": typeof warcraftlogs_types_index;
@@ -79,6 +87,8 @@ declare const fullApi: ApiFromModules<{
   "warcraftlogs/types/server": typeof warcraftlogs_types_server;
   "warcraftlogs/types/specRankingForEncounter": typeof warcraftlogs_types_specRankingForEncounter;
   "warcraftlogs/types/zone": typeof warcraftlogs_types_zone;
+  "warcraftlogs/zones/consts": typeof warcraftlogs_zones_consts;
+  "warcraftlogs/zones/getZones": typeof warcraftlogs_zones_getZones;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

@@ -1,14 +1,16 @@
-"use client";
 import Image from "next/image";
-
+import deathknight from "../assets/classIcons/deathknight-frost.webp";
 export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <div>
-          <button className="">
-
-          </button>
+          <a href="/rankings/1292/DeathKnight/Frost">
+            <Image src={deathknight} alt={""} width={24} height={24} className="
+              hover:border-dk hover:border-opacity-100 hover:cursor-pointer
+              rounded-sm border-2 border-transparent
+            "/>
+          </a>
         </div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">

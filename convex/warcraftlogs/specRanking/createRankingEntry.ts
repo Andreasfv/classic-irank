@@ -1,26 +1,21 @@
 import { v } from "convex/values";
 import { internalMutation } from "../../_generated/server";
-import { rankerEntryInput } from "../../schema/rankings/rankings";
-
-
-
+import { rankerEntryInput } from "../../schema/warcraftLogs/rankings";
 
 export const createRankerEntry = internalMutation({
-    args: rankerEntryInput,
+  args: rankerEntryInput,
 
-    handler: async (ctx, args) => {
-        await ctx.db.insert("rankings", args)
-    }
-})
+  handler: async (ctx, args) => {
+    await ctx.db.insert("rankings", args);
+  },
+});
 
 export const createRankerEntries = internalMutation({
-    args: {
-        entries: v.array(rankerEntryInput)    
-},
-        
-    handler: async (ctx, args) => {
-        for (const entry of args.entries) {
-            await ctx.db.insert("rankings", entry)
-        }
+  args: { entries: v.array(rankerEntryInput) },
+
+  handler: async (ctx, args) => {
+    for (const entry of args.entries) {
+      await ctx.db.insert("rankings", entry);
     }
-})
+  },
+});
