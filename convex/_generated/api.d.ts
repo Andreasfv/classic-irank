@@ -23,6 +23,7 @@ import type * as schema_warcraftLogs_encounter from "../schema/warcraftLogs/enco
 import type * as schema_warcraftLogs_rankings from "../schema/warcraftLogs/rankings.js";
 import type * as schema_warcraftLogs_zone from "../schema/warcraftLogs/zone.js";
 import type * as warcraftlogs_actions_generateRankingDataForSpec from "../warcraftlogs/actions/generateRankingDataForSpec.js";
+import type * as warcraftlogs_actions_generateZonesAndEncounters from "../warcraftlogs/actions/generateZonesAndEncounters.js";
 import type * as warcraftlogs_actions_index from "../warcraftlogs/actions/index.js";
 import type * as warcraftlogs_actions from "../warcraftlogs/actions.js";
 import type * as warcraftlogs_convexTypes_className from "../warcraftlogs/convexTypes/className.js";
@@ -32,6 +33,7 @@ import type * as warcraftlogs_mutations_createZoneWithEncounters from "../warcra
 import type * as warcraftlogs_mutations_index from "../warcraftlogs/mutations/index.js";
 import type * as warcraftlogs_mutations_ranking from "../warcraftlogs/mutations/ranking.js";
 import type * as warcraftlogs_mutations from "../warcraftlogs/mutations.js";
+import type * as warcraftlogs_queries_getZoneWithEncounters from "../warcraftlogs/queries/getZoneWithEncounters.js";
 import type * as warcraftlogs_types_actor from "../warcraftlogs/types/actor.js";
 import type * as warcraftlogs_types_consts from "../warcraftlogs/types/consts.js";
 import type * as warcraftlogs_types_encounter from "../warcraftlogs/types/encounter.js";
@@ -70,6 +72,7 @@ declare const fullApi: ApiFromModules<{
   "schema/warcraftLogs/rankings": typeof schema_warcraftLogs_rankings;
   "schema/warcraftLogs/zone": typeof schema_warcraftLogs_zone;
   "warcraftlogs/actions/generateRankingDataForSpec": typeof warcraftlogs_actions_generateRankingDataForSpec;
+  "warcraftlogs/actions/generateZonesAndEncounters": typeof warcraftlogs_actions_generateZonesAndEncounters;
   "warcraftlogs/actions/index": typeof warcraftlogs_actions_index;
   "warcraftlogs/actions": typeof warcraftlogs_actions;
   "warcraftlogs/convexTypes/className": typeof warcraftlogs_convexTypes_className;
@@ -79,6 +82,7 @@ declare const fullApi: ApiFromModules<{
   "warcraftlogs/mutations/index": typeof warcraftlogs_mutations_index;
   "warcraftlogs/mutations/ranking": typeof warcraftlogs_mutations_ranking;
   "warcraftlogs/mutations": typeof warcraftlogs_mutations;
+  "warcraftlogs/queries/getZoneWithEncounters": typeof warcraftlogs_queries_getZoneWithEncounters;
   "warcraftlogs/types/actor": typeof warcraftlogs_types_actor;
   "warcraftlogs/types/consts": typeof warcraftlogs_types_consts;
   "warcraftlogs/types/encounter": typeof warcraftlogs_types_encounter;

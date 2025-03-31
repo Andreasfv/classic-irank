@@ -1,7 +1,6 @@
-import { internal } from "../../../_generated/api";
 import { action } from "../../../_generated/server";
-import { getWarcraftLogsAccessToken } from "../auth/getAccessToken";
 import { wclApi } from "../../types";
+import { getWarcraftLogsAccessToken } from "../auth/getAccessToken";
 
 export interface getZonesOutput {
   data: {
@@ -15,7 +14,9 @@ export interface getZonesOutput {
     };
   };
 }
-export async function getZones(accessToken?: string): Promise<getZonesOutput> {
+export async function getZones(
+  accessToken?: string
+): Promise<getZonesOutput["data"]["worldData"]["zones"]> {
   const token = accessToken ?? (await getWarcraftLogsAccessToken()).accessToken;
   const query = {
     query: `
@@ -56,12 +57,13 @@ export async function getZones(accessToken?: string): Promise<getZonesOutput> {
     throw new Error("No zones found");
   }
 
-  return body.data.worldData.zones as getZonesOutput;
+  return body.data.worldData
+    .zones as getZonesOutput["data"]["worldData"]["zones"];
 }
 
 export const getZonesAction = action({
   args: {},
-  handler: async (ctx, args) => {
+  handler: async (ctx) => {
     const token = await ctx.runAction(
       // @ts-ignore
       internal.warcraftlogs.auth.getAccessToken.getWarcraftLogsTokenAction
@@ -69,6 +71,6 @@ export const getZonesAction = action({
 
     const data = await getZones(token);
 
-    return data.data.worldData.zones;
+    return data;
   },
 });

@@ -45,7 +45,7 @@ export const getWarcraftLogsTokenAction = internalAction({
   handler: async (ctx): Promise<string> => {
     const token = await ctx.runQuery(
       //@ts-ignore "internal" is being difficult.
-      internal.warcraftlogs.wclApi.auth.getWarcraftLogsTokenQuery
+      internal.warcraftlogs.wclApi.auth.getAccessToken.getWarcraftLogsTokenQuery
     );
     //If no token exists, create a new one.
     //OAuth v2 gives expiresIn as seconds, so we need to convert it to milliseconds.

@@ -43,7 +43,8 @@ export const generateRankingDataForSpec = action({
       args as GenerateRankingDataForSpecInput;
     const token = await ctx.runAction(
       // @ts-ignore
-      internal.warcraftlogs.wclApi.auth.getWarcraftLogsTokenAction
+      internal.warcraftlogs.wclApi.auth.getAccessToken
+        .getWarcraftLogsTokenAction
     );
 
     const specRankingData: SpecRankingForEncounter[] = await getSpecRanking({
