@@ -1,11 +1,11 @@
 import { v } from "convex/values";
-import { internal } from "../../_generated/api";
-import { action } from "../../_generated/server";
+import { internal } from "../../../_generated/api";
+import { action } from "../../../_generated/server";
 import { getWarcraftLogsAccessToken } from "../auth/getAccessToken";
-import convexClass from "../convexTypes/className";
-import convexSpec from "../convexTypes/specName";
-import { ClassName, Spec, WarcraftLogsdata, wclApi } from "../types/consts";
-import { SpecRankingForEncounter } from "../types/specRankingForEncounter";
+import convexClass from "../../convexTypes/className";
+import convexSpec from "../../convexTypes/specName";
+import { ClassName, Spec, WarcraftLogsdata, wclApi } from "../../types/consts";
+import { SpecRankingForEncounter } from "../../types/specRankingForEncounter";
 
 interface SpecRankingInput {
   className: ClassName;

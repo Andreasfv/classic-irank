@@ -1,7 +1,7 @@
-import { internal } from "../../_generated/api";
-import { action } from "../../_generated/server";
+import { internal } from "../../../_generated/api";
+import { action } from "../../../_generated/server";
 import { getWarcraftLogsAccessToken } from "../auth/getAccessToken";
-import { wclApi } from "../types";
+import { wclApi } from "../../types";
 
 export interface getZonesOutput {
   data: {

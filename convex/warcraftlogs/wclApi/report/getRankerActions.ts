@@ -1,13 +1,13 @@
 import { v } from "convex/values";
-import { action } from "../../_generated/server";
+import { action } from "../../../_generated/server";
 import { getWarcraftLogsAccessToken } from "../auth/getAccessToken";
-import { ClassSpecs, wclApi } from "../types/consts";
+import { ClassSpecs, wclApi } from "../../types/consts";
 import {
   classesNotableAbilityCasts,
   safeNameField,
   universalNotableCasts,
 } from "./notableAbilityCasts";
-import { ReportCast } from "../types";
+import { ReportCast } from "../../types";
 
 export type SpecKeys<T extends keyof ClassSpecs> = keyof ClassSpecs[T];
 

@@ -1,8 +1,8 @@
 import { v } from "convex/values";
-import { internal } from "../../_generated/api";
-import { action } from "../../_generated/server";
+import { internal } from "../../../_generated/api";
+import { action } from "../../../_generated/server";
 import { getWarcraftLogsAccessToken } from "../auth/getAccessToken";
-import { ReportData, wclApi } from "../types";
+import { ReportData, wclApi } from "../../types";
 
 interface GetReportActorsInput {
   reportCode: string;

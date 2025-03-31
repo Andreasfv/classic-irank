@@ -22,17 +22,16 @@ import type * as schema_tasks_tasks from "../schema/tasks/tasks.js";
 import type * as schema_warcraftLogs_encounter from "../schema/warcraftLogs/encounter.js";
 import type * as schema_warcraftLogs_rankings from "../schema/warcraftLogs/rankings.js";
 import type * as schema_warcraftLogs_zone from "../schema/warcraftLogs/zone.js";
-import type * as task_createTask from "../task/createTask.js";
-import type * as task_getTasks from "../task/getTasks.js";
-import type * as warcraftlogs_auth_getAccessToken from "../warcraftlogs/auth/getAccessToken.js";
+import type * as warcraftlogs_actions_generateRankingDataForSpec from "../warcraftlogs/actions/generateRankingDataForSpec.js";
+import type * as warcraftlogs_actions_index from "../warcraftlogs/actions/index.js";
+import type * as warcraftlogs_actions from "../warcraftlogs/actions.js";
 import type * as warcraftlogs_convexTypes_className from "../warcraftlogs/convexTypes/className.js";
 import type * as warcraftlogs_convexTypes_specName from "../warcraftlogs/convexTypes/specName.js";
-import type * as warcraftlogs_report_getRankerActions from "../warcraftlogs/report/getRankerActions.js";
-import type * as warcraftlogs_report_getReportActors from "../warcraftlogs/report/getReportActors.js";
-import type * as warcraftlogs_report_notableAbilityCasts from "../warcraftlogs/report/notableAbilityCasts.js";
-import type * as warcraftlogs_specRanking_createRankingEntry from "../warcraftlogs/specRanking/createRankingEntry.js";
-import type * as warcraftlogs_specRanking_generateRankingDataForSpec from "../warcraftlogs/specRanking/generateRankingDataForSpec.js";
-import type * as warcraftlogs_specRanking_getSpecRankingForEncounter from "../warcraftlogs/specRanking/getSpecRankingForEncounter.js";
+import type * as warcraftlogs_convexTypes_zoneWithEncounter from "../warcraftlogs/convexTypes/zoneWithEncounter.js";
+import type * as warcraftlogs_mutations_createZoneWithEncounters from "../warcraftlogs/mutations/createZoneWithEncounters.js";
+import type * as warcraftlogs_mutations_index from "../warcraftlogs/mutations/index.js";
+import type * as warcraftlogs_mutations_ranking from "../warcraftlogs/mutations/ranking.js";
+import type * as warcraftlogs_mutations from "../warcraftlogs/mutations.js";
 import type * as warcraftlogs_types_actor from "../warcraftlogs/types/actor.js";
 import type * as warcraftlogs_types_consts from "../warcraftlogs/types/consts.js";
 import type * as warcraftlogs_types_encounter from "../warcraftlogs/types/encounter.js";
@@ -44,8 +43,13 @@ import type * as warcraftlogs_types_report from "../warcraftlogs/types/report.js
 import type * as warcraftlogs_types_server from "../warcraftlogs/types/server.js";
 import type * as warcraftlogs_types_specRankingForEncounter from "../warcraftlogs/types/specRankingForEncounter.js";
 import type * as warcraftlogs_types_zone from "../warcraftlogs/types/zone.js";
-import type * as warcraftlogs_zones_consts from "../warcraftlogs/zones/consts.js";
-import type * as warcraftlogs_zones_getZones from "../warcraftlogs/zones/getZones.js";
+import type * as warcraftlogs_wclApi_auth_getAccessToken from "../warcraftlogs/wclApi/auth/getAccessToken.js";
+import type * as warcraftlogs_wclApi_report_getRankerActions from "../warcraftlogs/wclApi/report/getRankerActions.js";
+import type * as warcraftlogs_wclApi_report_getReportActors from "../warcraftlogs/wclApi/report/getReportActors.js";
+import type * as warcraftlogs_wclApi_report_notableAbilityCasts from "../warcraftlogs/wclApi/report/notableAbilityCasts.js";
+import type * as warcraftlogs_wclApi_specRanking_getSpecRankingForEncounter from "../warcraftlogs/wclApi/specRanking/getSpecRankingForEncounter.js";
+import type * as warcraftlogs_wclApi_zones_consts from "../warcraftlogs/wclApi/zones/consts.js";
+import type * as warcraftlogs_wclApi_zones_getZones from "../warcraftlogs/wclApi/zones/getZones.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -65,17 +69,16 @@ declare const fullApi: ApiFromModules<{
   "schema/warcraftLogs/encounter": typeof schema_warcraftLogs_encounter;
   "schema/warcraftLogs/rankings": typeof schema_warcraftLogs_rankings;
   "schema/warcraftLogs/zone": typeof schema_warcraftLogs_zone;
-  "task/createTask": typeof task_createTask;
-  "task/getTasks": typeof task_getTasks;
-  "warcraftlogs/auth/getAccessToken": typeof warcraftlogs_auth_getAccessToken;
+  "warcraftlogs/actions/generateRankingDataForSpec": typeof warcraftlogs_actions_generateRankingDataForSpec;
+  "warcraftlogs/actions/index": typeof warcraftlogs_actions_index;
+  "warcraftlogs/actions": typeof warcraftlogs_actions;
   "warcraftlogs/convexTypes/className": typeof warcraftlogs_convexTypes_className;
   "warcraftlogs/convexTypes/specName": typeof warcraftlogs_convexTypes_specName;
-  "warcraftlogs/report/getRankerActions": typeof warcraftlogs_report_getRankerActions;
-  "warcraftlogs/report/getReportActors": typeof warcraftlogs_report_getReportActors;
-  "warcraftlogs/report/notableAbilityCasts": typeof warcraftlogs_report_notableAbilityCasts;
-  "warcraftlogs/specRanking/createRankingEntry": typeof warcraftlogs_specRanking_createRankingEntry;
-  "warcraftlogs/specRanking/generateRankingDataForSpec": typeof warcraftlogs_specRanking_generateRankingDataForSpec;
-  "warcraftlogs/specRanking/getSpecRankingForEncounter": typeof warcraftlogs_specRanking_getSpecRankingForEncounter;
+  "warcraftlogs/convexTypes/zoneWithEncounter": typeof warcraftlogs_convexTypes_zoneWithEncounter;
+  "warcraftlogs/mutations/createZoneWithEncounters": typeof warcraftlogs_mutations_createZoneWithEncounters;
+  "warcraftlogs/mutations/index": typeof warcraftlogs_mutations_index;
+  "warcraftlogs/mutations/ranking": typeof warcraftlogs_mutations_ranking;
+  "warcraftlogs/mutations": typeof warcraftlogs_mutations;
   "warcraftlogs/types/actor": typeof warcraftlogs_types_actor;
   "warcraftlogs/types/consts": typeof warcraftlogs_types_consts;
   "warcraftlogs/types/encounter": typeof warcraftlogs_types_encounter;
@@ -87,8 +90,13 @@ declare const fullApi: ApiFromModules<{
   "warcraftlogs/types/server": typeof warcraftlogs_types_server;
   "warcraftlogs/types/specRankingForEncounter": typeof warcraftlogs_types_specRankingForEncounter;
   "warcraftlogs/types/zone": typeof warcraftlogs_types_zone;
-  "warcraftlogs/zones/consts": typeof warcraftlogs_zones_consts;
-  "warcraftlogs/zones/getZones": typeof warcraftlogs_zones_getZones;
+  "warcraftlogs/wclApi/auth/getAccessToken": typeof warcraftlogs_wclApi_auth_getAccessToken;
+  "warcraftlogs/wclApi/report/getRankerActions": typeof warcraftlogs_wclApi_report_getRankerActions;
+  "warcraftlogs/wclApi/report/getReportActors": typeof warcraftlogs_wclApi_report_getReportActors;
+  "warcraftlogs/wclApi/report/notableAbilityCasts": typeof warcraftlogs_wclApi_report_notableAbilityCasts;
+  "warcraftlogs/wclApi/specRanking/getSpecRankingForEncounter": typeof warcraftlogs_wclApi_specRanking_getSpecRankingForEncounter;
+  "warcraftlogs/wclApi/zones/consts": typeof warcraftlogs_wclApi_zones_consts;
+  "warcraftlogs/wclApi/zones/getZones": typeof warcraftlogs_wclApi_zones_getZones;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,
