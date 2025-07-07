@@ -17,19 +17,16 @@ export const universalNotableCasts = [
   { name: "Rotting Skull", id: 107949 }, //Rotting Skull - STR Use Trinket
 ];
 
-type NotableAbilityCasts = {
-  [key in keyof ClassSpecs]: {
-    [k in keyof ClassSpecs[key]]: { name: string; id: number }[];
-  };
-};
-
 export function getAbilityNameFromID(id: string) {
-  return NotableIDToName[id] ?? "Unknown";
+  return abilityIDToName[id] ?? "Unknown";
 }
 interface NotableIDToName {
   [key: string]: string;
 }
-export const NotableIDToName: NotableIDToName = {
+export const abilityIDToName: NotableIDToName = {
+  /*Any ability added here can be kept I believe. As Blizzard creates a new ability with the same name & new id
+    if they deem it necessary.
+  */
   //DK
   "49028": "Dancing Rune Weapon",
   "55233": "Vampiric Blood",
@@ -53,34 +50,133 @@ export const NotableIDToName: NotableIDToName = {
   "79633": "Tol'vir Agility",
 };
 
+enum CastType {
+  Defensive = "Defensive",
+  Offensive = "Offensive",
+  Utility = "Utility",
+  Core = "Core", // This is the big ticket cds
+  Racial = "Racial",
+}
+
+type NotableAbilityCasts = {
+  [key in keyof ClassSpecs]: {
+    [k in keyof ClassSpecs[key] | "common"]: {
+      name: string;
+      id: number;
+      type: CastType;
+    }[];
+  };
+};
+
 export const classesNotableAbilityCasts: NotableAbilityCasts = {
   DeathKnight: {
+    common: [
+      { name: "Icebound Fortitude", id: 48792, type: CastType.Defensive },
+      { name: "Outbreak", id: 77575, type: CastType.Offensive },
+      { name: "Anti-Magic Shell", id: 48707, type: CastType.Defensive },
+      { name: "Army of the Dead", id: 42650, type: CastType.Offensive },
+      { name: "Empower Rune Weapon", id: 47568, type: CastType.Offensive },
+      { name: "Raise Dead", id: 46584, type: CastType.Offensive },
+      { name: "Anti-Magic Zone", id: 51052, type: CastType.Offensive },
+      { name: "Lichborne", id: 49039, type: CastType.Offensive },
+      { name: "Death Pact", id: 48743, type: CastType.Offensive },
+    ],
     Blood: [
-      { name: "Dancing Rune Weapon", id: 49028 },
-      { name: "Vampiric Blood", id: 55233 },
-      { name: "Icebound Fortitude", id: 48792 },
-      { name: "Army of the Dead", id: 42650 },
+      { name: "Bone Shield", id: 49222, type: CastType.Defensive },
+      { name: "Dancing Rune Weapon", id: 49028, type: CastType.Defensive },
+      { name: "Vampiric Blood", id: 55233, type: CastType.Defensive },
     ],
-    Frost: [
-      { name: "Empower Rune Weapon", id: 47568 },
-      { name: "Pillar of Frost", id: 51271 },
-      { name: "Army of the Dead", id: 42650 },
-    ],
+    Frost: [{ name: "Pillar of Frost", id: 51271, type: CastType.Offensive }],
     Unholy: [
-      { name: "Dark Transformation", id: 63560 }, //Dark Transformation
-      { name: "Army of the Dead", id: 42650 }, //Army of the Dead
-      { name: "Unholy Frenzy", id: 49016 }, //Unholy Frenzy
-      { name: "Summon Gargoyle", id: 49206 }, //Summon Gargoyle
-      { name: "Empower Rune Weapon", id: 47568 },
+      { name: "Dark Transformation", id: 63560, type: CastType.Offensive },
+      { name: "Unholy Frenzy", id: 49016, type: CastType.Offensive },
+      { name: "Summon Gargoyle", id: 49206, type: CastType.Offensive },
+      { name: "Empower Rune Weapon", id: 47568, type: CastType.Offensive },
     ],
   },
-  Druid: { Balance: [], Feral: [], Guardian: [], Restoration: [] },
-  Hunter: { BeastMastery: [], Marksmanship: [], Survival: [] },
-  Mage: { Arcane: [], Fire: [], Frost: [] },
-  Paladin: { Holy: [], Protection: [], Retribution: [] },
-  Priest: { Discipline: [], Shadow: [] },
-  Rogue: { Assassination: [], Combat: [], Subtlety: [] },
-  Shaman: { Elemental: [], Enhancement: [], Restoration: [] },
-  Warlock: { Affliction: [], Demonology: [], Destruction: [] },
-  Warrior: { Arms: [], Fury: [], Protection: [] },
+  Druid: {
+    common: [
+      { name: "Barkskin", id: 22812, type: CastType.Defensive },
+      { name: "Frenzied Regen", id: 22842, type: CastType.Defensive },
+      { name: "Might of Ursoc", id: 106922, type: CastType.Defensive },
+      { name: "Heart of the Wild", id: 108288, type: CastType.Utility },
+      { name: "Innervate", id: 29166, type: CastType.Utility },
+      { name: "Incarnation", id: 106731, type: CastType.Core },
+      { name: "Nature's Vigil", id: 124974, type: CastType.Core },
+    ],
+    Balance: [
+      { name: "Starfall", id: 48505, type: CastType.Core },
+      { name: "Tranquility", id: 44203, type: CastType.Utility },
+    ],
+    Feral: [
+      { name: "Berserk", id: 50334, type: CastType.Offensive },
+      { name: "Tiger's Fury", id: 5217, type: CastType.Offensive },
+      { name: "Savage Roar", id: 52610, type: CastType.Offensive },
+      { name: "Enrage", id: 5229, type: CastType.Offensive },
+      { name: "Survival Instincts", id: 61336, type: CastType.Defensive },
+      { name: "Frenzied Regen", id: 22842, type: CastType.Defensive },
+      { name: "Tranquility", id: 44203, type: CastType.Utility },
+    ],
+
+    Guardian: [
+      { name: "Berserk_Bear", id: 50334, type: CastType.Core },
+      { name: "Berserk_Cat", id: 106951, type: CastType.Core },
+      { name: "Berserk_Noform", id: 106952, type: CastType.Core },
+      { name: "Incarnation: Son of Ursoc", id: 102558, type: CastType.Core },
+      { name: "Savage Defense", id: 62606, type: CastType.Core },
+      { name: "Savage Roar", id: 52610, type: CastType.Offensive },
+      { name: "Enrage", id: 5229, type: CastType.Offensive },
+      { name: "Survival Instincts", id: 61336, type: CastType.Defensive },
+      { name: "Frenzied Regen", id: 22842, type: CastType.Defensive },
+      { name: "Tranquility", id: 44203, type: CastType.Utility },
+    ],
+    Restoration: [
+      { name: "Tree of Life", id: 33891, type: CastType.Core },
+      { name: "Tranquility", id: 44203, type: CastType.Core },
+    ],
+  },
+  Hunter: {
+    common: [
+      { name: "Deterrence", id: 19263, type: CastType.Defensive },
+      { name: "Rapid Fire", id: 3045, type: CastType.Offensive },
+    ],
+    BeastMastery: [
+      { name: "Beastial Wrath", id: 19574, type: CastType.Offensive },
+      { name: "Focus Fire", id: 82692, type: CastType.Offensive },
+      //Figure out Call of The Wild, it's cast by the pet and not the hunter (ehh who cares, fuck BM)
+    ],
+    Marksmanship: [{ name: "Readiness", id: 23989, type: CastType.Offensive }],
+    Survival: [
+      { name: "Lock and Load", id: 56453, type: CastType.Offensive },
+      { name: "Black Arrow", id: 3674, type: CastType.Offensive },
+    ],
+  },
+  Mage: {
+    common: [
+      { name: "Mage Ward", id: 1463, type: CastType.Defensive },
+      { name: "Evocation", id: 12051, type: CastType.Utility },
+      { name: "Mage Ward", id: 543, type: CastType.Utility },
+      { name: "Replenish Mana", id: 5405, type: CastType.Utility },
+      { name: "Mirror Image", id: 55342, type: CastType.Offensive },
+      { name: "Flame Orb", id: 82731, type: CastType.Offensive },
+    ],
+    Arcane: [
+      { name: "Arcane Power", id: 12042, type: CastType.Offensive },
+      { name: "Presence of Mind", id: 12043, type: CastType.Offensive },
+    ],
+    Fire: [{ name: "Combustion", id: 11129, type: CastType.Offensive }],
+    Frost: [
+      { name: "Icy Veins", id: 12472, type: CastType.Offensive },
+      { name: "Cold Snap", id: 11958, type: CastType.Utility },
+      { name: "Frostfire Orb", id: 92283, type: CastType.Offensive },
+      { name: "Deep Freeze", id: 71757, type: CastType.Offensive },
+      { name: "Mirror Image", id: 58834, type: CastType.Offensive },
+    ],
+  },
+  Paladin: { common: [], Holy: [], Protection: [], Retribution: [] },
+  Priest: { common: [], Discipline: [], Shadow: [] },
+  Rogue: { common: [], Assassination: [], Combat: [], Subtlety: [] },
+  Shaman: { common: [], Elemental: [], Enhancement: [], Restoration: [] },
+  Warlock: { common: [], Affliction: [], Demonology: [], Destruction: [] },
+  Warrior: { common: [], Arms: [], Fury: [], Protection: [] },
 };

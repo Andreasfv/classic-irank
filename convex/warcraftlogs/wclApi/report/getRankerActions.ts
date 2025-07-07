@@ -34,8 +34,11 @@ export async function getRankerActions<T extends keyof ClassSpecs>({
 }: RankerActionsInput<T>) {
   const token = accessToken ?? (await getWarcraftLogsAccessToken()).accessToken;
 
-  // This is a bit of a yolo, but instead of fetching hundreds of events, I try to fetch only the one's I'm interested in.
-  const notableCasts = classesNotableAbilityCasts[className]?.[spec] ?? [];
+  // This is a bit of a yolo, but instead of fetching hundreds of events, I try to fetch only the ones I'm interested in.
+  const notableCasts = [
+    ...(classesNotableAbilityCasts[className]?.[spec] ?? []),
+    ...(classesNotableAbilityCasts[className]?.common ?? []),
+  ];
 
   const castQueries = [...notableCasts, ...universalNotableCasts].map(
     ({ name, id }) =>
