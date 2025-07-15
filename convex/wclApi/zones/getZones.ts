@@ -1,5 +1,6 @@
-import { action } from "../../../_generated/server";
-import { wclApi } from "../../types";
+import { internal } from "../../_generated/api";
+import { action } from "../../_generated/server";
+import { wclApi } from "../../warcraftlogs/types";
 import { getWarcraftLogsAccessToken } from "../auth/getAccessToken";
 
 export interface getZonesOutput {
@@ -65,8 +66,7 @@ export const getZonesAction = action({
   args: {},
   handler: async (ctx) => {
     const token = await ctx.runAction(
-      // @ts-ignore
-      internal.warcraftlogs.auth.getAccessToken.getWarcraftLogsTokenAction
+      internal.wclApi.auth.getAccessToken.getWarcraftLogsTokenAction
     );
 
     const data = await getZones(token);

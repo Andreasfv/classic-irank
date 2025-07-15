@@ -1,11 +1,11 @@
 import { internal } from "../../_generated/api";
 import { action } from "../../_generated/server";
-import { getZones } from "../wclApi/zones/getZones";
+import { getZones } from "../../wclApi/zones/getZones";
 
 export const generateZonesAndEncounters = action(async (ctx) => {
   const accessToken = await ctx.runAction(
     // @ts-ignore
-    internal.warcraftlogs.wclApi.auth.getAccessToken.getWarcraftLogsTokenAction
+    internal.wclApi.auth.getAccessToken.getWarcraftLogsTokenAction
   );
 
   const zones = await getZones(accessToken);

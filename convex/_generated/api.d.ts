@@ -45,13 +45,13 @@ import type * as warcraftlogs_types_report from "../warcraftlogs/types/report.js
 import type * as warcraftlogs_types_server from "../warcraftlogs/types/server.js";
 import type * as warcraftlogs_types_specRankingForEncounter from "../warcraftlogs/types/specRankingForEncounter.js";
 import type * as warcraftlogs_types_zone from "../warcraftlogs/types/zone.js";
-import type * as warcraftlogs_wclApi_auth_getAccessToken from "../warcraftlogs/wclApi/auth/getAccessToken.js";
-import type * as warcraftlogs_wclApi_report_getRankerActions from "../warcraftlogs/wclApi/report/getRankerActions.js";
-import type * as warcraftlogs_wclApi_report_getReportActors from "../warcraftlogs/wclApi/report/getReportActors.js";
-import type * as warcraftlogs_wclApi_report_notableAbilityCasts from "../warcraftlogs/wclApi/report/notableAbilityCasts.js";
-import type * as warcraftlogs_wclApi_specRanking_getSpecRankingForEncounter from "../warcraftlogs/wclApi/specRanking/getSpecRankingForEncounter.js";
-import type * as warcraftlogs_wclApi_zones_consts from "../warcraftlogs/wclApi/zones/consts.js";
-import type * as warcraftlogs_wclApi_zones_getZones from "../warcraftlogs/wclApi/zones/getZones.js";
+import type * as wclApi_auth_getAccessToken from "../wclApi/auth/getAccessToken.js";
+import type * as wclApi_report_getRankerActions from "../wclApi/report/getRankerActions.js";
+import type * as wclApi_report_getReportActors from "../wclApi/report/getReportActors.js";
+import type * as wclApi_report_notableAbilityCasts from "../wclApi/report/notableAbilityCasts.js";
+import type * as wclApi_specRanking_getSpecRankingForEncounter from "../wclApi/specRanking/getSpecRankingForEncounter.js";
+import type * as wclApi_zones_consts from "../wclApi/zones/consts.js";
+import type * as wclApi_zones_getZones from "../wclApi/zones/getZones.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -94,13 +94,13 @@ declare const fullApi: ApiFromModules<{
   "warcraftlogs/types/server": typeof warcraftlogs_types_server;
   "warcraftlogs/types/specRankingForEncounter": typeof warcraftlogs_types_specRankingForEncounter;
   "warcraftlogs/types/zone": typeof warcraftlogs_types_zone;
-  "warcraftlogs/wclApi/auth/getAccessToken": typeof warcraftlogs_wclApi_auth_getAccessToken;
-  "warcraftlogs/wclApi/report/getRankerActions": typeof warcraftlogs_wclApi_report_getRankerActions;
-  "warcraftlogs/wclApi/report/getReportActors": typeof warcraftlogs_wclApi_report_getReportActors;
-  "warcraftlogs/wclApi/report/notableAbilityCasts": typeof warcraftlogs_wclApi_report_notableAbilityCasts;
-  "warcraftlogs/wclApi/specRanking/getSpecRankingForEncounter": typeof warcraftlogs_wclApi_specRanking_getSpecRankingForEncounter;
-  "warcraftlogs/wclApi/zones/consts": typeof warcraftlogs_wclApi_zones_consts;
-  "warcraftlogs/wclApi/zones/getZones": typeof warcraftlogs_wclApi_zones_getZones;
+  "wclApi/auth/getAccessToken": typeof wclApi_auth_getAccessToken;
+  "wclApi/report/getRankerActions": typeof wclApi_report_getRankerActions;
+  "wclApi/report/getReportActors": typeof wclApi_report_getReportActors;
+  "wclApi/report/notableAbilityCasts": typeof wclApi_report_notableAbilityCasts;
+  "wclApi/specRanking/getSpecRankingForEncounter": typeof wclApi_specRanking_getSpecRankingForEncounter;
+  "wclApi/zones/consts": typeof wclApi_zones_consts;
+  "wclApi/zones/getZones": typeof wclApi_zones_getZones;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

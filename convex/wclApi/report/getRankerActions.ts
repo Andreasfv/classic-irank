@@ -1,13 +1,13 @@
 import { v } from "convex/values";
-import { action } from "../../../_generated/server";
+import { action } from "../../_generated/server";
 import { getWarcraftLogsAccessToken } from "../auth/getAccessToken";
-import { ClassSpecs, wclApi } from "../../types/consts";
+import { ClassSpecs, wclApi } from "../../warcraftlogs/types/consts";
 import {
   classesNotableAbilityCasts,
   safeNameField,
   universalNotableCasts,
 } from "./notableAbilityCasts";
-import { ReportCast } from "../../types";
+import { ReportCast } from "../../warcraftlogs/types";
 
 export type SpecKeys<T extends keyof ClassSpecs> = keyof ClassSpecs[T];
 
@@ -21,7 +21,15 @@ export interface RankerActionsInput<T extends keyof ClassSpecs> {
 }
 
 export interface RankerActionsOutput {
-  data: { reportData: { report: { [key: string]: { data: ReportCast[] } } } };
+  data: {
+    reportData: {
+      report: {
+        [key: string]: {
+          data: ReportCast[];
+        };
+      };
+    };
+  };
 }
 
 export async function getRankerActions<T extends keyof ClassSpecs>({
@@ -44,6 +52,7 @@ export async function getRankerActions<T extends keyof ClassSpecs>({
     ({ name, id }) =>
       `${safeNameField(name)}: events(fightIDs: ${fightID}, dataType: Casts, abilityID: ${id}, sourceID: ${sourceID}){data}`
   );
+  console.log(castQueries);
 
   const query = {
     query: `query ReportData {
@@ -64,12 +73,17 @@ export async function getRankerActions<T extends keyof ClassSpecs>({
     body: JSON.stringify(query),
   });
 
+  console.log(response);
   if (!response.ok) {
     console.log(response.statusText);
     throw new Error("Failed to get player actions for encounter");
   }
 
   const body: RankerActionsOutput = await response.json();
+
+  if ("errors" in body) {
+    console.log("something wenbt wrong :o");
+  }
   return body;
 }
 

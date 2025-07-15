@@ -7,9 +7,11 @@ import Image from "next/image";
 export default function Home() {
   // @ts-expect-error depth is out ofmy control
   const test3 = useAction(api.warcraftlogs.specRanking.getSpecRankingForEncounter.getSpecRankingForEncounterAction)
-  const getActors = useAction(api.warcraftlogs.report.getReportActors.getActorsReportAction)
+  const getActors = useAction(api.wclApi.report.getReportActors.getActorsReportAction)
+
   // @ts-ignore
   const getRankerActions = useAction(api.warcraftlogs.report.getRankerActions.getRankerActionsAction)
+  
   async function handleClick() {
     const encounterRankings = await test3({
       className: "DeathKnight",
@@ -44,7 +46,7 @@ export default function Home() {
     console.log(rankerActions)
   }
   
-  const gigaTest = useAction(api.warcraftlogs.specRanking.generateRankingDataForSpec.generateRankingDataForSpec)
+  const gigaTest = useAction(api.warcraftlogs.actions.generateRankingDataForSpec.generateRankingDataForSpec)
   async function handleClick2() {
     const rankingData = await gigaTest({
       boss: 1292,

@@ -1,5 +1,5 @@
-import { internal } from "../../../_generated/api";
-import { internalAction, internalQuery } from "../../../_generated/server";
+import { internal } from "../../_generated/api";
+import { internalAction, internalQuery } from "../../_generated/server";
 /* 
     Function to get the access token for the Warcraft Logs API
 */
@@ -44,8 +44,8 @@ export const getWarcraftLogsTokenAction = internalAction({
   args: {},
   handler: async (ctx): Promise<string> => {
     const token = await ctx.runQuery(
-      //@ts-ignore "internal" is being difficult.
-      internal.warcraftlogs.wclApi.auth.getAccessToken.getWarcraftLogsTokenQuery
+      //@ts-ignore "ts-expect-error" doesnt understand the internal object.
+      internal.wclApi.auth.getAccessToken.getWarcraftLogsTokenQuery
     );
     //If no token exists, create a new one.
     //OAuth v2 gives expiresIn as seconds, so we need to convert it to milliseconds.

@@ -1,7 +1,7 @@
-import { ClassSpecs } from "../../types/consts";
+import { ClassSpecs } from "../../warcraftlogs/types/consts";
 
 export function safeNameField(name: string) {
-  return name.replaceAll("'", "").replaceAll(" ", "");
+  return name.replaceAll("'", "").replaceAll(" ", "").replaceAll("-", "");
 }
 export const universalNotableCasts = [
   //Racials

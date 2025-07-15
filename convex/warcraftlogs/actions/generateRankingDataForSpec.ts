@@ -2,9 +2,12 @@ import { v } from "convex/values";
 import { action } from "../../_generated/server";
 import { ClassName, ReportCast, Spec, SpecRankingForEncounter } from "../types";
 import { internal } from "../../_generated/api";
-import { getSpecRanking } from "../wclApi/specRanking/getSpecRankingForEncounter";
-import { getActorsReport } from "../wclApi/report/getReportActors";
-import { getRankerActions, SpecKeys } from "../wclApi/report/getRankerActions";
+import { getSpecRanking } from "../../wclApi/specRanking/getSpecRankingForEncounter";
+import { getActorsReport } from "../../wclApi/report/getReportActors";
+import {
+  getRankerActions,
+  SpecKeys,
+} from "../../wclApi/report/getRankerActions";
 
 interface GenerateRankingDataForSpecInput {
   className: ClassName;
@@ -42,9 +45,7 @@ export const generateRankingDataForSpec = action({
     const { className, spec, boss, difficulty, tenMan } =
       args as GenerateRankingDataForSpecInput;
     const token = await ctx.runAction(
-      // @ts-ignore
-      internal.warcraftlogs.wclApi.auth.getAccessToken
-        .getWarcraftLogsTokenAction
+      internal.wclApi.auth.getAccessToken.getWarcraftLogsTokenAction
     );
 
     const specRankingData: SpecRankingForEncounter[] = await getSpecRanking({
@@ -55,6 +56,7 @@ export const generateRankingDataForSpec = action({
       difficulty: difficulty,
       tenMan: tenMan,
     });
+
     console.log("Spec Rankings fetched");
     const rankerObjects: GenerateRankingDataForSpecOutput[] = [];
 
@@ -69,6 +71,7 @@ export const generateRankingDataForSpec = action({
       const rankerActorID = reportActors.report.masterData.actors.find(
         (actor) => actor.name === ranker.name
       )?.id;
+
       const fightStartTime = reportActors.report.fights.find(
         (fight) => fight.id === ranker.report.fightID
       )?.startTime;
