@@ -9,15 +9,18 @@ export const generateZonesAndEncounters = action(async (ctx) => {
   );
 
   const zones = await getZones(accessToken);
+  const data = zones
+    .filter((zone) => zone.frozen == false)
+    .map((zone) => ({
+      zoneID: zone.id,
+      name: zone.name,
+      encounters: zone.encounters.map((encounter) => ({
+        encounterID: encounter.id,
+        name: encounter.name,
+      })),
+    }));
 
-  const data = zones.map((zone) => ({
-    zoneID: zone.id,
-    name: zone.name,
-    encounters: zone.encounters.map((encounter) => ({
-      encounterID: encounter.id,
-      name: encounter.name,
-    })),
-  }));
+  console.log(data);
 
   await ctx.runMutation(
     //@ts-ignore
