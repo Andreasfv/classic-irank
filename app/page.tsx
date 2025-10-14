@@ -18,7 +18,7 @@ export default async function Home() {
             {zone.name}
           </div>))}
         <div>
-          <a href="/rankings/1292/DeathKnight/Frost">
+          <a href="/rankings/DeathKnight/Frost/1292">
             <Image src={deathknight} alt={""} width={24} height={24} className="
               hover:border-dk hover:border-opacity-100 hover:cursor-pointer
               rounded-sm border-2 border-transparent

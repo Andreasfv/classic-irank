@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "convex/warcraftlogs/wclApi/auth/getAccessToken.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "convex/warcraftlogs/wclApi/auth/getAccessToken.js", "app/rankings/[[...slug]].js", "app/rankings/layout.js"],
   "exclude": ["node_modules"]
 }
