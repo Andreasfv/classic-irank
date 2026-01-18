@@ -1,28 +1,19 @@
+
 "use client";
 
-import { api } from "@/convex/_generated/api"
+import { api } from "@/convex/_generated/api";
 import { FunctionReturnType } from "convex/server";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
 interface RaidProps {
     zones: FunctionReturnType<typeof api.warcraftlogs.queries.getZoneWithEncounters.getZonesWithEncounters>;
 }
+
 export default function Raid({ zones }: RaidProps) {
     const router = useRouter();
     const params = useParams();
-    console.log("Params:", params);
-
-    const [selectedZone, setSelectedZone] = useState<number | null>(
-        params?.slug && params.slug[2] !== undefined
-            ? Number(params.slug[2])
-            : zones[0].zoneID || null
-    );
-    const [selectedEncounter, setSelectedEncounter] = useState<number | null>(
-        params?.slug && params.slug[3] !== undefined
-            ? Number(params.slug[3])
-            : zones[0].encounters[0]?.encounterID || null
-    );
-
+    
+    const [selectedEncounter, setSelectedEncounter] = useState<number | null>(zones[0].encounters[0]?.encounterID || null);
 
     function selectEncounter(encounterID: number, zoneID: number) {
         if (selectedEncounter === encounterID) {
@@ -30,7 +21,7 @@ export default function Raid({ zones }: RaidProps) {
         }
         else {
             if (params?.slug && params.slug.length > 1) {
-                router.push(`/rankings/${params?.slug[0]}/${params.slug[1]}/${zoneID}/${encounterID}`, { shallow: true});
+                router.push(`/rankings/${params?.slug[0]}/${params.slug[1]}/${zoneID}/${encounterID}`, { });
                 setSelectedEncounter(encounterID);
             }
         }

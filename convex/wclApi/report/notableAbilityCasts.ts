@@ -86,7 +86,10 @@ export const classesNotableAbilityCasts: NotableAbilityCasts = {
       { name: "Dancing Rune Weapon", id: 49028, type: CastType.Defensive },
       { name: "Vampiric Blood", id: 55233, type: CastType.Defensive },
     ],
-    Frost: [{ name: "Pillar of Frost", id: 51271, type: CastType.Offensive }],
+    Frost: [
+      { name: "Pillar of Frost", id: 51271, type: CastType.Offensive },
+      { name: "Pillar of Frost", id: 90259, type: CastType.Offensive },
+    ],
     Unholy: [
       { name: "Dark Transformation", id: 63560, type: CastType.Offensive },
       { name: "Unholy Frenzy", id: 49016, type: CastType.Offensive },

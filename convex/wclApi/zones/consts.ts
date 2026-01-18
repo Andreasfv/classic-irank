@@ -3,22 +3,21 @@
 // that aren't current content.
 
 export const activeZones = {
-  dragonSoul: {
-    id: 1033,
-    name: "Dragon Soul",
-  },
-  fireLands: {
-    id: 1027,
-    name: "Firelands",
+  throneOfThunder: {
+    id: 1046,
+    name: "Throne of Thunder",
   },
 };
 
 export const oldZones = {
   // Firelands is merely a test entry. I'm not sure I'll ever run a query for it.
   // It's just to test support for when DS goes out of activity.
+  dragonSoul: {
+    id: 1033,
+    name: "Dragon Soul",
+  },
   fireLands: {
     id: 1027,
-    frozen: true,
     name: "Firelands",
   },
 };

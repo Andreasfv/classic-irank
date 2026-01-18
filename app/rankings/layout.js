@@ -1,20 +1,31 @@
 import { api } from "@/convex/_generated/api";
 import { fetchQuery } from "convex/nextjs";
-import Raid from "./components/Raid"
+import styled from "styled-components";
+import Menu from "./components/Menu/Menu";
+
+const Wrapper = styled.div`
+    display: flex; 
+    flex-direction: row;
+
+    height: 100%;
+`
+const MenuWrapper = styled.div`
+height: 100%;
+    `
 export default async function Layout({ children }) {
-      const zonesToFetch = [1033, 1027]
+      const zonesToFetch = [1046] // Find a way to make this dynamic
       const zones = await fetchQuery(api.warcraftlogs.queries.getZoneWithEncounters.getZonesWithEncounters, {
         zones: zonesToFetch
       })
 
     return (
         <>
-        <div className="flex">
-            <div className="ml-auto">
-                    <Raid zones={zones} />
-            </div>
-        </div>
-            {children}
+            <Wrapper>
+                <MenuWrapper>
+                    <Menu zones={zones}></Menu>
+                </MenuWrapper>
+                {children}
+            </Wrapper>
         </>
     )
 }
