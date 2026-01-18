@@ -9,6 +9,12 @@ const Wrapper = styled.div`
 
     height: 100%;
 `
+
+const ChildrenWrapper = styled.div`
+    flex-grow: 1;
+    height: 100%;
+    overflow-y: auto;
+    `
 const MenuWrapper = styled.div`
 height: 100%;
     `
@@ -24,7 +30,10 @@ export default async function Layout({ children }) {
                 <MenuWrapper>
                     <Menu zones={zones}></Menu>
                 </MenuWrapper>
+                <ChildrenWrapper>
+
                 {children}
+                </ChildrenWrapper>
             </Wrapper>
         </>
     )

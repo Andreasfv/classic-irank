@@ -1,8 +1,9 @@
+"use client"
 import { useState } from "react";
 import styled from "styled-components";
 
 interface WrapperProps {
-    isOpen: boolean;
+    open: boolean;
 }
 
 const Wrapper = styled.div<WrapperProps>`
@@ -10,7 +11,7 @@ const Wrapper = styled.div<WrapperProps>`
     flex-direction: column;
     margin-right: auto;
     cursor: pointer;
-    ${props => !props.isOpen ? `
+    ${props => !props.open ? `
         &:hover { background-color: #444; } : ''
     ` : ''}
     width: 100%;
@@ -51,7 +52,7 @@ export default function MenuCategory({name, menuItems}: MenuCategoryProps) {
     }
 
     return (
-        <Wrapper onClick={handleToggle} isOpen={open}>
+        <Wrapper onClick={handleToggle} open={open}>
             <h3 className="underline">{name}</h3>
 
             <MenuItemContainer open={open}>

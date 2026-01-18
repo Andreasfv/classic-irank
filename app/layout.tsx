@@ -21,7 +21,11 @@ export const metadata: Metadata = {
 };
 
 const Body = styled.body`
-  height: 100vh;
+  height: 100%;
+`
+
+const Html = styled.html`
+  height: 100%;
 `
 
 export default function RootLayout({
@@ -31,13 +35,13 @@ export default function RootLayout({
 }>) {
   return (
     <ConvexAuthNextjsServerProvider>
-      <html lang="en">
+      <Html lang="en">
         <Body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
           <ConvexClientProvider>{children}</ConvexClientProvider>
         </Body>
-      </html>
+      </Html>
     </ConvexAuthNextjsServerProvider>
   );
 }

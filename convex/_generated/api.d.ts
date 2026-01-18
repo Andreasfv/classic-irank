@@ -33,6 +33,7 @@ import type * as warcraftlogs_mutations_createZoneWithEncounters from "../warcra
 import type * as warcraftlogs_mutations_index from "../warcraftlogs/mutations/index.js";
 import type * as warcraftlogs_mutations_ranking from "../warcraftlogs/mutations/ranking.js";
 import type * as warcraftlogs_mutations from "../warcraftlogs/mutations.js";
+import type * as warcraftlogs_queries_getRankingsForEncounter from "../warcraftlogs/queries/getRankingsForEncounter.js";
 import type * as warcraftlogs_queries_getZoneWithEncounters from "../warcraftlogs/queries/getZoneWithEncounters.js";
 import type * as warcraftlogs_queries_index from "../warcraftlogs/queries/index.js";
 import type * as warcraftlogs_queries from "../warcraftlogs/queries.js";
@@ -84,6 +85,7 @@ declare const fullApi: ApiFromModules<{
   "warcraftlogs/mutations/index": typeof warcraftlogs_mutations_index;
   "warcraftlogs/mutations/ranking": typeof warcraftlogs_mutations_ranking;
   "warcraftlogs/mutations": typeof warcraftlogs_mutations;
+  "warcraftlogs/queries/getRankingsForEncounter": typeof warcraftlogs_queries_getRankingsForEncounter;
   "warcraftlogs/queries/getZoneWithEncounters": typeof warcraftlogs_queries_getZoneWithEncounters;
   "warcraftlogs/queries/index": typeof warcraftlogs_queries_index;
   "warcraftlogs/queries": typeof warcraftlogs_queries;

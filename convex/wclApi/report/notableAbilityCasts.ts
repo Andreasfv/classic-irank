@@ -88,7 +88,7 @@ export const classesNotableAbilityCasts: NotableAbilityCasts = {
     ],
     Frost: [
       { name: "Pillar of Frost", id: 51271, type: CastType.Offensive },
-      { name: "Pillar of Frost", id: 90259, type: CastType.Offensive },
+      { name: "Pillar of Frost Glyphed", id: 90259, type: CastType.Offensive },
     ],
     Unholy: [
       { name: "Dark Transformation", id: 63560, type: CastType.Offensive },

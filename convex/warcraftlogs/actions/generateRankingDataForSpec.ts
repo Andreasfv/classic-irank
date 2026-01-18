@@ -45,7 +45,7 @@ export const generateRankingDataForSpec = action({
     const { className, spec, boss, difficulty, tenMan } =
       args as GenerateRankingDataForSpecInput;
     const token = await ctx.runAction(
-      internal.wclApi.auth.getAccessToken.getWarcraftLogsTokenAction
+      internal.wclApi.auth.getAccessToken.getWarcraftLogsTokenAction,
     );
 
     const specRankingData: SpecRankingForEncounter[] = await getSpecRanking({
@@ -69,11 +69,11 @@ export const generateRankingDataForSpec = action({
       });
 
       const rankerActorID = reportActors.report.masterData.actors.find(
-        (actor) => actor.name === ranker.name
+        (actor) => actor.name === ranker.name,
       )?.id;
 
       const fightStartTime = reportActors.report.fights.find(
-        (fight) => fight.id === ranker.report.fightID
+        (fight) => fight.id === ranker.report.fightID,
       )?.startTime;
 
       if (rankerActorID) {
@@ -101,13 +101,29 @@ export const generateRankingDataForSpec = action({
           fightStartTime: fightStartTime!,
           abilities: [],
         };
+        if (!rankerActions.data.reportData) {
+          console.log(
+            "No report data for",
+            ranker.name,
+            ranker.report.code,
+            ranker.report.fightID,
+          );
+          continue;
+        }
 
         for (const action in rankerActions.data.reportData.report) {
           const refactoredAbilities = rankerActions.data.reportData.report[
             action
           ].data.map((ability) => {
-            ability.timestamp = ability.timestamp - fightStartTime!;
-            return ability;
+            //Refactor to avoid extra fields that randomly appear and fix timestamp.
+            return {
+              abilityGameID: ability.abilityGameID,
+              fight: ability.fight,
+              sourceID: ability.sourceID,
+              targetID: ability.targetID,
+              timestamp: ability.timestamp - fightStartTime!,
+              type: ability.type,
+            };
           });
 
           rankerData.abilities.push(...refactoredAbilities);

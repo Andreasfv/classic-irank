@@ -16,7 +16,7 @@ export default function Home() {
     const encounterRankings = await test3({
       className: "DeathKnight",
       spec: "Frost",
-      boss: 1292,
+      boss: 51575,
       difficulty: 4,
       tenMan: true
     })
@@ -49,7 +49,7 @@ export default function Home() {
   const gigaTest = useAction(api.warcraftlogs.actions.generateRankingDataForSpec.generateRankingDataForSpec)
   async function handleClick2() {
     const rankingData = await gigaTest({
-      boss: 51577,
+      boss: 51575,
       className: "DeathKnight",
       difficulty: 4,
       spec: "Frost",

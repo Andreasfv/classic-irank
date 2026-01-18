@@ -50,7 +50,7 @@ export async function getRankerActions<T extends keyof ClassSpecs>({
 
   const castQueries = [...notableCasts, ...universalNotableCasts].map(
     ({ name, id }) =>
-      `${safeNameField(name)}: events(fightIDs: ${fightID}, dataType: Casts, abilityID: ${id}, sourceID: ${sourceID}){data}`
+      `${safeNameField(name)}: events(fightIDs: ${fightID}, dataType: Casts, abilityID: ${id}, sourceID: ${sourceID}){data}`,
   );
 
   const query = {
@@ -79,6 +79,7 @@ export async function getRankerActions<T extends keyof ClassSpecs>({
   }
 
   const body: RankerActionsOutput = await response.json();
+  console.log("body", body);
 
   if ("errors" in body) {
     console.log("something wenbt wrong :o");
