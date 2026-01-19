@@ -5,3 +5,5 @@ Its more of a proof of consept of what I wanted to do. There are lots to figure 
 Super early design, but I got it to compile the best of a class and present it in a way that I technicaly only have to provide a class-id fight-id to make this work for other classes as well.
 
 <img width="2507" height="1268" alt="image" src="https://github.com/user-attachments/assets/71fba5bd-ba5b-45c6-a49f-472793d57e3f" />
+
+Idea is to be able to get an overview of how the best players utilize their most important abilities in a more compact way than warcraftlogs.com provides for more rapid improvement/experimentation environment for myself and my raidbuddies.
